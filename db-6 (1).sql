@@ -8,17 +8,19 @@ CREATE TABLE `admin`(
 PRIMARY KEY(`admin_id`)
 );
 
+
+
 CREATE TABLE `lost_item`(
-`ID` int auto_increment NOT NULL,
-`name` varchar(30) NOT NULL,
-`description` varchar(100) NOT NULL,
+`ID` INT AUTO_INCREMENT NOT NULL,
+`item_name` varchar(30) NOT NULL,
 `category` varchar(30) NOT NULL,
-`location_lost` varchar(100) not null,
-`date_lost` date not null,
-`time_lost` time,
-`image` blob,
+`description` varchar(100) NOT NULL,
+`location_lost` varchar(100) default null,
+`datetime` datetime default null,
+`item_image` varchar(100) default null,
 PRIMARY KEY(`ID`)
 );
+
 
 CREATE TABLE `owner`(
 `owner_id` int auto_increment NOT NULL,
@@ -43,16 +45,15 @@ CREATE TABLE `owner_phno` (
     FOREIGN KEY (`owner_id`) REFERENCES `owner`(`owner_id`) on delete cascade on update cascade
 );
 
-create table `found_item` (
-	`ID` int auto_increment not null,
-    `name` varchar(20) not null,
-    `description` varchar(100) not null,
-    `category` varchar(10) not null,
-    `location_found` varchar(100) not null,
-    `date_found` date not null,
-    `time_found` time,   
-    `image` blob ,
-    primary key(`ID`)
+CREATE TABLE `found_item`(
+`ID` INT AUTO_INCREMENT NOT NULL,
+`item_name` varchar(30) NOT NULL,
+`category` varchar(30) NOT NULL,
+`description` varchar(100) NOT NULL,
+`location_found` varchar(100) default null,
+`datetime` datetime default null,
+`item_image` varchar(100) default null,
+PRIMARY KEY(`ID`)
 );
 
 create table `finder` (
@@ -86,5 +87,6 @@ create table `ticket` (
     primary key(`ticket_id`,`owner_id`),
     foreign key (`owner_id`) references `owner`(`owner_id`) on delete cascade on update cascade
 );
+
 
 
